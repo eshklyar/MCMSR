@@ -10,4 +10,21 @@
 
 @implementation MagicalCreature
 
+//-(instancetype)init{
+//    abort();
+//    return nil;
+//
+//}
+-(instancetype)initWithName:(NSString *)name{
+    self = [super self];
+    if (name.length == 0) {
+        [NSException raise:NSInvalidArgumentException format:@"Dragons must have a name."];
+    }
+    if (self){
+        self.name = name;
+    }
+    return self;
+}
+
 @end
+

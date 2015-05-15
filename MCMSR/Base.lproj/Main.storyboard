@@ -26,6 +26,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TFo-xF-WU0" id="PmF-r6-gp8">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="fpN-Z6-MTN" kind="show" identifier="ShowCreatureSegue" id="CjP-oz-v9d"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -33,17 +36,51 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="5Md-Sj-tfX"/>
                                 </connections>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="enter creature" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vku-v0-62v">
+                                <rect key="frame" x="61" y="488" width="164" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="PFK-lL-sht"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZU-N5-Udo">
+                                <rect key="frame" x="299" y="487" width="96" height="30"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="onAddBtnPrsd:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bVd-BE-InU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="MCMSR" id="vuN-2c-mCJ"/>
                     <connections>
                         <outlet property="tableView" destination="cz9-HS-ZbG" id="KUF-XX-Y4N"/>
+                        <outlet property="textField" destination="Vku-v0-62v" id="L8f-Po-jOf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1152" y="362"/>
+        </scene>
+        <!--Creature View Controller-->
+        <scene sceneID="6dw-jj-h16">
+            <objects>
+                <viewController id="fpN-Z6-MTN" customClass="CreatureViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QzM-g5-CWu"/>
+                        <viewControllerLayoutGuide type="bottom" id="773-bA-NAl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n6e-T5-uNo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LZz-n7-h9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1929" y="362"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c8U-mm-Kih">
