@@ -10,5 +10,7 @@
 
 @interface MagicalCreature : NSObject
 @property NSString *name;
+@property NSMutableArray *creatures;
+
 -(instancetype)initWithName:(NSString *)name;
 @end

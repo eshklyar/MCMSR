@@ -15,6 +15,8 @@
 @property NSMutableArray *creatures;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property NSString* returnedCreature;
+@property NSIndexPath *returnedIndex;
 
 @end
 
@@ -36,11 +38,26 @@
     self.creatures =[[NSMutableArray alloc ] initWithObjects:@"Dragon", @"Phoenix", @"Unicorn", nil ];
 //    self.creatures =[[NSMutableArray alloc ] init];
     [self.creatures addObject:python.name];
+
+
 }
 //    -(void)viewWillAppear:(BOOL)animated{
 //        [super viewWillAppear:animated];
 //        [self.tableView reloadData];
 //    }
+- (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"view will appear");
+    if (self.returnedCreature !=nil) {
+        NSLog(@" not empty");
+         NSLog(@"not empty creature %@", self.returnedCreature);
+        NSLog(@"returned row was %ld", self.returnedIndex.row);
+        [self.creatures replaceObjectAtIndex:self.returnedIndex.row withObject:self.returnedCreature];
+        NSLog(@"what a creature %@", [self.creatures objectAtIndex:self.returnedIndex.row]);
+        [self.tableView reloadData];
+    }
+    else
+           NSLog(@"empty  creature");
+}
 
 - (IBAction)onAddBtnPrsd:(UIButton *)sender {
 
@@ -71,6 +88,11 @@
     return self.creatures.count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    self.someProperty = [self.someArray objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"ShowCreatureSegue" sender:self];
+}
 #pragma mark -textField
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -97,11 +119,18 @@
     creatureController.creature = [self.creatures objectAtIndex:ip.row]; // grab creature using row number as index, and pass to mcreature forward
     NSLog(@"creature %@", creatureController.creature );
 
-   creatureController.navigationItem.title = cell.textLabel.text;
+
+//   creatureController.navigationItem.title = cell.textLabel.text;
+    creatureController.navigationItem.title = [self.creatures objectAtIndex:ip.row];
+
 
 //     creatureController.creature  = [self.creatures objectAtIndex:[self.tableView indexPathForCell:cell].row];
+    self.returnedCreature =[NSString new];
+    self.returnedIndex = [NSIndexPath new];
 
-
+    self.returnedCreature = creatureController.creature;
+    self.returnedIndex = ip;
+     NSLog(@"from segue creature %@", self.returnedCreature);
 }
 @end
 
